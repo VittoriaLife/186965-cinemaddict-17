@@ -1,11 +1,11 @@
 import { generateFilmTitle, generateFilmPoster } from './film.js';
-import { commentsId } from './comment.js'; 
+// import { commentsId } from './comment.js';
 
-const compareItems = (first, second) => {
-  let compareArray = new Map().set(first, second);
-};
+// const compareItems = (first, second) => {
+//   let compareArray = new Map().set(first, second);
+// };
 
-const filmsId = [1, 2, 3, 4, 5];
+// const filmsId = [1, 2, 3, 4, 5];
 
 export const generatePopup = () => ({
   id: '0',

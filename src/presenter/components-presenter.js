@@ -10,6 +10,7 @@ import StatisticView from '../view/footer-statistics-view.js';
 import PopupView from '../view/film-popup-view.js';
 import { render } from '../render.js';
 import CommentView from '../view/comments-view.js';
+import { filterComments  } from '../mock/popup.js';
 
 const FILM_CARDS_AMOUNT = 5;
 const FILM_EXTRA_AMOUNT = 2;
@@ -60,11 +61,19 @@ export default class ComponentsPresenter {
     this.commentModel = commentModel;
     this.commentsList = [...this.commentModel.getComments()];
 
+    const comments = filterComments(this.commentsList, this.popupsList);
+    
+    console.log(comments);
+
     for(const popup of this.popupsList) {
       render(new PopupView(popup), siteFooterElement, 'afterend');
     }
 
-    for(const comment of this.commentsList) {
+    // for(const comment of this.commentsList) {
+    //   render(new CommentView(comment), document.querySelector('.film-details__comments-list'));
+    // }
+
+    for(const comment of comments) {
       render(new CommentView(comment), document.querySelector('.film-details__comments-list'));
     }
   };

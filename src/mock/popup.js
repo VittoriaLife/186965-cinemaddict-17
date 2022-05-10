@@ -1,17 +1,20 @@
 import { generateFilmTitle, generateFilmPoster } from './film.js';
-// import { commentsId } from './comment.js';
+import { getRandomInteger } from '../ulit.js';
 
-// const compareItems = (first, second) => {
-//   let compareArray = new Map().set(first, second);
-// };
 
-// const filmsId = [1, 2, 3, 4, 5];
+const filmsId = [1, 2, 3, 4, 5];
+
+const filterComments = (comments, film) => comments.filter((comment) => comment.id === film.id);
+
+const generateFilmsId = () => {
+  const randomNumber = getRandomInteger(0, filmsId.length - 1);
+
+  return filmsId[randomNumber];
+};
 
 export const generatePopup = () => ({
-  id: '0',
-  comments: [
-    // $Comment.id$, $Comment.id$
-  ],
+  id: generateFilmsId(),
+  // comments: $Comment.id$, $Comment.id$,s
   filmInfo: {
     title: generateFilmTitle(),
     alternativeTitle: generateFilmTitle(),
@@ -42,3 +45,6 @@ export const generatePopup = () => ({
     favorite: false
   }
 });
+
+
+export { filterComments };

@@ -27,6 +27,7 @@ const generateFilmPoster = () => {
 
 
 export const generateFilmCard = () => ({
+  id: 0,
   filmInfo: {
     title: generateFilmTitle(),
     totalRating: 5.3,

@@ -39,13 +39,13 @@ const generateCommentsId = () => {
 
 export const generateComment = () => (
   {
-    'id': generateCommentsId(),
-    'author': generateAuthorName(),
-    'comment':  generateCommentText(),
-    'date': '2019-05-11T16:12:32.554Z',
-    'emotion':  generateEmotions()
+    id: generateCommentsId(),
+    author: generateAuthorName(),
+    comment:  generateCommentText(),
+    date: '2019-05-11T16:12:32.554Z',
+    emotion:  generateEmotions()
   }
 );
 
 
-export { commentsId };
+export { commentsId, generateCommentsId };

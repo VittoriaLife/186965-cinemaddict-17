@@ -62,8 +62,8 @@ export default class ComponentsPresenter {
     this.commentsList = [...this.commentModel.getComments()];
 
     const comments = filterComments(this.commentsList, this.popupsList);
-    
-    console.log(comments);
+
+    // console.log(comments);
 
     for(const popup of this.popupsList) {
       render(new PopupView(popup), siteFooterElement, 'afterend');

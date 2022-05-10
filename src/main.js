@@ -12,5 +12,3 @@ componentsPresenter.initHeader();
 componentsPresenter.initMainBlock(filmModel);
 componentsPresenter.initFooterStatistic();
 componentsPresenter.initPopupBlock(popupModel, commentModel);
-
-

@@ -4,7 +4,7 @@ import { getRandomInteger } from '../ulit.js';
 
 const filmsId = [1, 2, 3, 4, 5];
 
-const filterComments = (comments, film) => comments.filter((comment) => comment.id === film.id);
+const filterComments = (comments, film) => comments.filter((comment) => comment.id === film.filmId);
 
 const generateFilmsId = () => {
   const randomNumber = getRandomInteger(0, filmsId.length - 1);
@@ -12,9 +12,16 @@ const generateFilmsId = () => {
   return filmsId[randomNumber];
 };
 
+const linkComments = (commentsList, popupList) => {
+  popupList.forEach((element) => {
+    element.comments = commentsList.length;
+  });
+
+};
+
+
 export const generatePopup = () => ({
-  id: generateFilmsId(),
-  // comments: $Comment.id$, $Comment.id$,s
+  filmId: generateFilmsId(),
   filmInfo: {
     title: generateFilmTitle(),
     alternativeTitle: generateFilmTitle(),
@@ -47,4 +54,4 @@ export const generatePopup = () => ({
 });
 
 
-export { filterComments };
+export { filterComments, linkComments,  generateFilmsId };

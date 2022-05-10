@@ -1,4 +1,5 @@
 import { getRandomInteger } from '../ulit.js';
+import {  generateFilmsId } from '../mock/popup.js';
 
 const filmsTitles = ['The Dance of Life', 'Sagebrush Trail', 'The Man with the Golden Arm', 'Santa Claus Conquers the Martians', 'Popeye the Sailor Meets Sindbad the Sailor'];
 const filmsPosters = [
@@ -27,7 +28,7 @@ const generateFilmPoster = () => {
 
 
 export const generateFilmCard = () => ({
-  id: 0,
+  filmId: generateFilmsId(),
   filmInfo: {
     title: generateFilmTitle(),
     totalRating: 5.3,

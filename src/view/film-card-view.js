@@ -2,7 +2,7 @@ import { createElement } from '../render.js';
 import { humanizeYearRelease, setTime } from '../ulit.js';
 
 const createFilmCardTemplate = (film) => {
-  const { title, poster, runtime, genre, description } = film.filmInfo;
+  const { title, poster, runtime, genre, description, totalRating } = film.filmInfo;
   const date = film.filmInfo.release.date;
 
   const releaseYear = date !== null ? humanizeYearRelease(date) : '';
@@ -12,7 +12,7 @@ const createFilmCardTemplate = (film) => {
     `<article class="film-card">
     <a class="film-card__link">
   <h3 class="film-card__title">${title}</h3>
-  <p class="film-card__rating">8.3</p>
+  <p class="film-card__rating">${totalRating}</p>
   <p class="film-card__info">
     <span class="film-card__year">${releaseYear}</span>
     <span class="film-card__duration">${filmTime.$d.hours}h ${filmTime.$d.minutes}m</span>

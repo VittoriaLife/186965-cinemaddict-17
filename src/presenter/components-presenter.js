@@ -10,7 +10,7 @@ import StatisticView from '../view/footer-statistics-view.js';
 import PopupView from '../view/film-popup-view.js';
 import { render } from '../render.js';
 import CommentView from '../view/comments-view.js';
-import { filterComments  } from '../mock/popup.js';
+import { filterComments, linkComments  } from '../mock/popup.js';
 
 const FILM_CARDS_AMOUNT = 5;
 const FILM_EXTRA_AMOUNT = 2;
@@ -18,6 +18,7 @@ const siteHeaderElement = document.querySelector('.header');
 const siteMainElement = document.querySelector('.main');
 const siteFooterElement = document.querySelector('.footer');
 const siteFooterStatisticElement = siteFooterElement.querySelector('.footer__statistics');
+
 
 export default class ComponentsPresenter {
 
@@ -33,13 +34,14 @@ export default class ComponentsPresenter {
     render(new FiltersView(), siteMainElement);
     render(new FilmListView(), siteMainElement);
 
-    for(let i = 0; i < this.filmsList.length; i++) {
-      render(new FilmCardView(this.filmsList[i]), siteMainElement.querySelector('.films-list__container'));
+    for(const filmCard of this.filmsList) {
+      render(new FilmCardView(filmCard), siteMainElement.querySelector('.films-list__container'));
     }
 
     render(new BtnShowMoreView(), siteMainElement.querySelector('.films-list'));
     render(new FilmListTopRatedView(), siteMainElement.querySelector('.films'));
     render(new FilmListMostCommentedView(), siteMainElement.querySelector('.films'));
+
 
     for(let i = 0; i < FILM_EXTRA_AMOUNT; i++) {
       render(new FilmCardView(this.filmsList[i]), siteMainElement.querySelector('.films-list--extra .films-list__container'));
@@ -60,18 +62,13 @@ export default class ComponentsPresenter {
     this.popupsList = [...this.popupModel.getPopups()];
     this.commentModel = commentModel;
     this.commentsList = [...this.commentModel.getComments()];
+    const comments = filterComments(this.commentsList, this.popupsList[0]);
 
-    const comments = filterComments(this.commentsList, this.popupsList);
-
-    // console.log(comments);
+    linkComments(comments, this.popupsList);
 
     for(const popup of this.popupsList) {
       render(new PopupView(popup), siteFooterElement, 'afterend');
     }
-
-    // for(const comment of this.commentsList) {
-    //   render(new CommentView(comment), document.querySelector('.film-details__comments-list'));
-    // }
 
     for(const comment of comments) {
       render(new CommentView(comment), document.querySelector('.film-details__comments-list'));
